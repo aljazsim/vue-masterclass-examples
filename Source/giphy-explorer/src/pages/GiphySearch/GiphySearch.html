@@ -1,0 +1,7 @@
+<layout>
+    <giphy-search-box :isLoading="isLoading" @search="onSearch($event)"></giphy-search-box>
+
+    <div class="d-flex mt-2">
+        <giphy-list :giphs="giphs"></giphy-list>
+    </div>
+</layout>

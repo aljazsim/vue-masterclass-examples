@@ -1,0 +1,45 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "chrome",
+            "port": 9222,
+            "request": "attach",
+            "name": "Request Portal",
+            "urlFilter": "http://localhost:8080*",
+            "webRoot": "${workspaceFolder}",
+            "breakOnLoad": true,
+            "smartStep": true,
+            "pathMapping": {
+              "/_karma_webpack_": "${workspaceFolder}"
+            },
+            "sourceMapPathOverrides": {
+              "webpack:/*": "${webRoot}/*",
+              "/./*": "${webRoot}/*",
+              "/src/*": "${webRoot}/*",
+              "/*": "*",
+              "/./~/*": "${webRoot}/node_modules/*"
+            },
+          },
+          {
+            "type": "chrome",
+            "port": 9222,
+            "request": "attach",
+            "name": "Admin Portal",
+            "urlFilter": "http://localhost:8090*",
+            "webRoot": "${workspaceFolder}",
+            "breakOnLoad": true,
+            "smartStep": true,
+            "pathMapping": {
+              "/_karma_webpack_": "${workspaceFolder}"
+            },
+            "sourceMapPathOverrides": {
+              "webpack:/*": "${webRoot}/*",
+              "/./*": "${webRoot}/*",
+              "/src/*": "${webRoot}/*",
+              "/*": "*",
+              "/./~/*": "${webRoot}/node_modules/*"
+            },
+          }
+    ]
+}
