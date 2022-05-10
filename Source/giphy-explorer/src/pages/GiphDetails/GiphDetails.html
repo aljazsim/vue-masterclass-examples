@@ -1,0 +1,31 @@
+<layout>
+    <div class="d-flex flex-column align-items-center" v-if="giph">
+        <div>
+            Title: {{ giph.title }}
+        </div>
+
+        <div>
+            Created: {{ giph.created }}
+        </div>
+
+        <div class="giph-image grow-on-hover">
+            <img :src="giph.url" :width="giph.width" :height="giph.height" />
+        </div>
+
+        <div>
+            User: {{ giph.username }}
+        </div>
+
+        <div>
+            User description: {{ giph.userDescription }}
+        </div>
+
+        <div>
+            User profile: <a :href="giph.userProfileUrl" target="_blank">{{ giph.userProfileUrl }}</a>
+        </div>
+
+        <div>
+            Source: <a :href="giph.source" target="_blank">{{ giph.source }}</a>
+        </div>
+    </div>
+</layout>

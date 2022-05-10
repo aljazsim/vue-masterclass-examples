@@ -1,0 +1,28 @@
+<div class="d-flex flex-column flex-grow-1">
+    <!-- giphs -->
+    <div class="d-flex flex-row flex-wrap justify-content-evenly giph-image-container">
+        <transition-group name="list">
+            <div v-for="giph in giphs" :key="giph.url" class="giph-image hand grow-on-hover" @click="select(giph)">
+                <img :src="giph.url" :width="giph.width" :height="giph.height" />
+            </div>
+        </transition-group>
+    </div>
+
+    <!-- giphs placeholder -->
+    <div class="d-flex flex-fill flex-row justify-content-center align-items-center my-2" v-if="!isLoading && giphs?.length === 0">
+        <icon-giph :size="200" />
+    </div>
+
+    <!-- loading -->
+    <div class="d-flex flex-fill flex-row justify-content-center align-items-center my-2" v-if="isLoading">
+        <icon-loading :size="200" class="rotate-counter-clockwise" />
+    </div>
+
+    <!-- load more -->
+    <div class="d-flex justify-content-center my-2" v-if="!isLoading && canLoadMore">
+        <button class="btn btn-secondary text-bright text-capitalize load-more-button px-4 d-flex flex-row justify-content-center align-items-center" :disabled="isLoading" type="button" @click="loadMore()">
+            <icon-load-more class="me-2" />
+            Load more
+        </button>
+    </div>
+</div>

@@ -1,16 +1,35 @@
+import { Giph } from "../../common/giph";
 import { IRoutingManager } from "./IRoutingManager";
-import { giphySearchRouteName } from "./router";
+import { giphDetailsRouteName, giphSearchRouteName } from "./routing";
 import { Router, useRoute } from "vue-router";
 
 export class RoutingManager implements IRoutingManager {
-  constructor(private readonly router: Router) {
-  }
+    constructor(private readonly router: Router) {
+    }
 
-  public goToGiphySearch(): void {
-    this.router.push({ name: giphySearchRouteName });
-  }
+    public getGiphDetailsParams(): { giphId: string } {
+        if (this.isGiphDetailsRouteActive()) {
+            return {
+                giphId: this.router.currentRoute.value.params.giphId as string
+            };
+        } else {
+            return null;
+        }
+    }
 
-  public isGiphySearchRouteActive(): boolean {
-    return useRoute()?.name === giphySearchRouteName;
-  }
+    public goToGiphDetails(giph: Giph): void {
+        this.router.push({ name: giphDetailsRouteName, params: { giphId: giph.id } });
+    }
+
+    public goToGiphSearch(): void {
+        this.router.push({ name: giphSearchRouteName });
+    }
+
+    public isGiphDetailsRouteActive(): boolean {
+        return useRoute()?.name === giphDetailsRouteName;
+    }
+
+    public isGiphSearchRouteActive(): boolean {
+        return useRoute()?.name === giphSearchRouteName;
+    }
 }

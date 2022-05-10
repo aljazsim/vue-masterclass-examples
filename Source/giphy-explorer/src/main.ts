@@ -5,31 +5,35 @@ import "./registerServiceWorker";
 import "@popperjs/core";
 import "bootstrap";
 import "reflect-metadata";
-import { Configuration } from "./common/configuration";
-import GiphyList from "./components/GiphyList/GiphyList.vue";
-import GiphySearchBox from "./components/GiphySearchBox/GiphySearchBox.vue";
+import { Configuration, getConfiguration } from "./common/configuration";
+import GiphList from "./components/GiphList/GiphList.vue";
+import GiphSearchBox from "./components/GiphSearchBox/GiphSearchBox.vue";
+import GiphStatusBar from "./components/GiphStatusBar/GiphStatusBar.vue";
 import Layout from "./components/Layout/Layout.vue";
 import { AutoFocusDirective } from "./directives/AutoFocusDirective";
+import { AutoSelectDirective } from "./directives/AutoSelectDirective";
 import App from "./pages/App/App.vue";
 import { GiphyApiClient } from "./services/api/GiphyApiClient";
 import { IGiphyApiClient } from "./services/api/IGiphyApiClient";
 import { IRoutingManager } from "./services/router/IRoutingManager";
-import router from "./services/router/router";
+import router from "./services/router/routing";
 import { RoutingManager } from "./services/router/RoutingManager";
 import { IStateManager } from "./services/state/IStateManager";
 import { StateManager } from "./services/state/stateManager";
 import { store } from "./services/state/store";
 import { cid, container } from "inversify-props";
 import { createApp } from "vue";
+import CloseIcon from "vue-material-design-icons/Close.vue";
+import ImageSearchOutlineIcon from "vue-material-design-icons/ImageSearchOutline.vue";
+import MagnifyIcon from "vue-material-design-icons/Magnify.vue";
+import SyncIcon from "vue-material-design-icons/Sync.vue";
+import DownloadIcon from "vue-material-design-icons/Download.vue";
 
 // configuration
-const configuration: Configuration = {
-  giphyApiBaseUrl: process.env.VUE_APP_GIPHY_API_BASE_URL ?? "",
-  giphyApiKey: process.env.VUE_APP_GIPHY_API_KEY ?? ""
-};
+const configuration: Configuration = getConfiguration();
 
 // configure dependency injection
-container.bind<IGiphyApiClient>(cid.IGiphyApiClient).toConstantValue(new GiphyApiClient(configuration.giphyApiBaseUrl, configuration.giphyApiKey));
+container.bind<IGiphyApiClient>(cid.IGiphyApiClient).toConstantValue(new GiphyApiClient(configuration.giphy.apiBaseUrl, configuration.giphy.apiKey));
 container.bind<IStateManager>(cid.IStateManager).toConstantValue(new StateManager(store));
 container.bind<IRoutingManager>(cid.IRoutingManager).toConstantValue(new RoutingManager(router));
 
@@ -39,11 +43,20 @@ const app = createApp(App);
 // register components
 app.component("layout", Layout);
 
-app.component("giphy-search-box", GiphySearchBox);
-app.component("giphy-list", GiphyList);
+app.component("giph-search-box", GiphSearchBox);
+app.component("giph-list", GiphList);
+app.component("giph-status-bar", GiphStatusBar);
+
+// register icons
+app.component("icon-search", MagnifyIcon);
+app.component("icon-clear", CloseIcon);
+app.component("icon-giph", ImageSearchOutlineIcon);
+app.component("icon-loading", SyncIcon);
+app.component("icon-load-more", DownloadIcon);
 
 // register directives
 app.directive("auto-focus", AutoFocusDirective);
+app.directive("auto-select", AutoSelectDirective);
 
 // register plugins
 app.use(store);

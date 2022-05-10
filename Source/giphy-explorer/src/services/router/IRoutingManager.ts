@@ -1,4 +1,9 @@
+import { Giph } from "../../common/giph";
+
 export interface IRoutingManager {
-  goToGiphySearch(): void;
-  isGiphySearchRouteActive(): boolean;
+    getGiphDetailsParams(): { giphId: string };
+    goToGiphDetails(giph: Giph): void;
+    goToGiphSearch(): void;
+    isGiphDetailsRouteActive(): boolean;
+    isGiphSearchRouteActive(): boolean;
 }

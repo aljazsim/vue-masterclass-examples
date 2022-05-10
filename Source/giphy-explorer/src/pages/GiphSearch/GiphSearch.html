@@ -1,0 +1,16 @@
+<layout>
+    <!-- search box -->
+    <div class="d-flex mt-2">
+        <giph-search-box :isLoading="isLoading" @search="onSearch($event)" @clear="onClear()"></giph-search-box>
+    </div>
+
+    <!-- list -->
+    <div class="d-flex flex-grow-1 mt-2">
+        <giph-list :isLoading="isLoading" :canLoadMore="itemCount < totalItemCount" :giphs="giphs" @select="onSelect($event)" @loadMore="onLoadMore()"></giph-list>
+    </div>
+
+    <!-- status bar -->
+    <div class="d-flex mt-2">
+        <giph-status-bar :itemCount="itemCount" :totalItemCount="totalItemCount" ref="statusBar"></giph-status-bar>
+    </div>
+</layout>

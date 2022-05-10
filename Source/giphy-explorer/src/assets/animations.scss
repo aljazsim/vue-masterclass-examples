@@ -1,5 +1,37 @@
-.animation-rotate {
-    animation: rotation 2s infinite linear;
+/* item animations */
+.fade-enter-active,
+.fade-leave-active {
+    transition: opacity 1s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+    opacity: 0;
+}
+
+/* list animations */
+.list-enter-active,
+.list-leave-active {
+    transition: all 1s ease;
+}
+
+.list-enter-from,
+.list-leave-to {
+    opacity: 0;
+}
+
+/* hover animations */
+.grow-on-hover {
+    transition: all .2s ease-in-out;
+}
+
+.grow-on-hover:hover {
+    transform: scale(1.2);
+}
+
+/* custom animations */
+.rotate-counter-clockwise {
+    animation: rotation 3s infinite linear;
 }
 
 @keyframes rotation {

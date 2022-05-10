@@ -1,6 +1,14 @@
-import { ImageDto } from "../api/responses/ImageDto";
+import { Giph } from "../../common/giph";
 
 export interface State {
-  isLoading: boolean;
-  giphs: ImageDto[];
+    giphs: {
+        items: Giph[];
+        selectedItem: Giph | null;
+        totalItemCount: number;
+        page: number;
+        pageSize: number;
+        pageCount: number;
+        search: string
+    },
+    isLoading: boolean;
 }
