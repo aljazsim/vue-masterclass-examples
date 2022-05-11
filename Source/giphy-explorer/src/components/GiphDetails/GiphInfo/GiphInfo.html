@@ -1,4 +1,4 @@
-<div class="d-flex flex-grow-1 flex-column p-4 my-4 giph-info">
+<div class="d-flex flex-grow-1 flex-column p-4 my-4 giph-info" :class="{ 'giph-info-disabled': isLoading }">
     <table cellpadding="8">
         <tr v-if="giph?.url">
             <td class="text-center" colspan="2">

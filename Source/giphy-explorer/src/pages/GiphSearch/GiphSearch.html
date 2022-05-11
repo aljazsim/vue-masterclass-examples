@@ -5,12 +5,12 @@
     </div>
 
     <!-- list -->
-    <div class="d-flex flex-grow-1 mt-2">
+    <div class="d-flex flex-column flex-grow-1 mt-2">
         <giph-list :isLoading="isLoading" :canLoadMore="itemCount < totalItemCount" :giphs="giphs" @select="onSelect($event)" @loadMore="onLoadMore()"></giph-list>
     </div>
 
     <!-- pager -->
     <div class="d-flex mt-2">
-        <giph-pager :itemCount="itemCount" :totalItemCount="totalItemCount" ref="statusBar"></giph-pager>
+        <giph-pager :isLoading="isLoading" :itemCount="itemCount" :totalItemCount="totalItemCount" ref="statusBar"></giph-pager>
     </div>
 </layout>

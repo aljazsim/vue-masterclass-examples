@@ -1,6 +1,10 @@
-.status-bar {
+.pager {
     border: 1px solid #ced4da;
     border-radius: 0.25rem;
     background-color: white;
     height: 4.625rem;
+}
+
+.pager-disabled {
+    background-color: #f6f6f7;
 }

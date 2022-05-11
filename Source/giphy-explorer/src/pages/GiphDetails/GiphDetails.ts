@@ -24,11 +24,15 @@ export default class GiphDetails extends Vue {
     }
 
     public async mounted(): Promise<void> {
+        this.stateManager.setIsLoading(true);
+
         const giphId = this.routingManager.getGiphDetailsParams()?.giphId;
 
         if (giphId) {
             this.stateManager.selectGiph(await this.giphyApiClient.getGiphDetails(giphId));
         }
+
+        this.stateManager.setIsLoading(false);
 
         if (!this.giph) {
             this.goToGiphSearch();

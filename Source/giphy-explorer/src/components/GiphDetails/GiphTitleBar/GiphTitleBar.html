@@ -1,4 +1,4 @@
-<div class="d-flex flex-fill justify-content-between align-items-center title-bar p-3">
+<div class="d-flex flex-fill justify-content-between align-items-center title-bar p-3" :class="{ 'title-bar-disabled': isLoading }">
     <icon-back class="hand grow-on-hover" @click="goBack()" />
 
     <span class="fw-bold">{{ title }}</span>

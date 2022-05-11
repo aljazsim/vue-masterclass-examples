@@ -4,14 +4,20 @@
     background-color: white;
 }
 
+.search-box-disabled {
+    background-color: #f6f6f7;
+}
+
 .search-input,
 .search-input:focus,
 .search-input:active,
-.search-input:hover {
+.search-input:hover,
+.search-input:disabled {
     border: none !important;
+    background: none !important;
     outline: 0px !important;
-    -webkit-appearance: none;
     box-shadow: none !important;
     font-size: 1.3rem;
     padding: 0px;
+    -webkit-appearance: none;
 }

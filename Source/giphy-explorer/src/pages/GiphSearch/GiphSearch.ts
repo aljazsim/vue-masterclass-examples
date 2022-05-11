@@ -48,9 +48,6 @@ export default class GiphSearch extends Vue {
 
         this.stateManager.setGiphs(items, giphs.totalItemCount, page, giphs.pageSize, giphs.pageCount, searchKeywords);
         this.stateManager.setIsLoading(false);
-
-        // scroll to bottom
-        setTimeout(() => (this.$refs.statusBar as Vue).$el.scrollIntoView({ behavior: "smooth" }), 1000);
     }
 
     public async onSearch(searchKeywords: string): Promise<void> {

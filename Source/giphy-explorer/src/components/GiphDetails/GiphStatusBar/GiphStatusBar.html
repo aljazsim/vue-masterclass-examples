@@ -1,7 +1,7 @@
-<div class="d-flex flex-fill justify-content-between align-items-center status-bar p-3">
+<div class="d-flex flex-fill justify-content-between align-items-center status-bar p-3" :class="{ 'status-bar-disabled': isLoading }">
     <icon-back class="hand grow-on-hover" @click="goBack()" />
 
-    <span class="fw-bold">giphy explorer | Vue.js masterclass | Aljaz Simonic | 2022</span>
+    <span class="">giphy explorer | Vue.js masterclass | By <a href="https://github.com/aljazsim">Aljaz Simonic</a> 2022</span>
 
     <span>Powered by <a href="https://giphy.com/">Giphy</a></span>
 </div>

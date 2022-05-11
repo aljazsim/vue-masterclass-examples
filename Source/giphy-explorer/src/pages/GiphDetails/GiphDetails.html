@@ -1,16 +1,16 @@
 <layout>
     <!-- title bar -->
     <div class="d-flex">
-        <giph-title-bar :title="giph?.title" :userAvatarUrl="giph?.userAvatarUrl" @goBack="goToGiphSearch()"></giph-title-bar>
+        <giph-title-bar :isLoading="isLoading" :title="giph?.title" :userAvatarUrl="giph?.userAvatarUrl" @goBack="goToGiphSearch()"></giph-title-bar>
     </div>
 
     <!-- info -->
     <div class="d-flex flex-column flex-grow-1 mt-2">
-        <giph-info :giph="giph"></giph-info>
+        <giph-info :isLoading="isLoading" :giph="giph"></giph-info>
     </div>
 
     <!-- status bar -->
     <div class="d-flex mt-2">
-        <giph-status-bar @goBack="goToGiphSearch()"></giph-status-bar>
+        <giph-status-bar :isLoading="isLoading" @goBack="goToGiphSearch()"></giph-status-bar>
     </div>
 </layout>
