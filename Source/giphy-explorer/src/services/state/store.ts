@@ -12,7 +12,7 @@ export const store: Store<State> = createStore<State>({
             selectedItem: null,
             page: 1,
             pageCount: 0,
-            pageSize: 20,
+            pageSize: 10,
             search: ""
         }
     },

@@ -24,17 +24,21 @@ export class GiphyApiClient implements IGiphyApiClient {
         try {
             const response = await this.http.get<GetGiphResponse>(`gifs/${giphId}`, configuration);
             const giph = response.data.data;
-            const width = giph.images.downsized_large.width;
-            const height = giph.images.downsized_large.height;
-            const url = giph.images.downsized.url;
+            const width = giph.images.original.width;
+            const height = giph.images.original.height;
+            const size = giph.images.original.size;
+            const url = giph.images.original.url;
             const title = giph.title;
-            const username = giph.user.username;
-            const userDescription = giph.user.description;
-            const userProfileUrl = giph.user.profile_url;
+            const username = giph.user?.username;
+            const userDisplayName = giph.user?.display_name;
+            const userDescription = giph.user?.description;
+            const userProfileUrl = giph.user?.profile_url;
+            const userAvatarUrl = giph.user?.avatar_url;
             const created = giph.import_datetime;
             const source = giph.source;
+            const embedUrl = giph.embed_url;
 
-            return new GiphDetails(giphId, width, height, url, title, username, userDescription, userProfileUrl, created, source);
+            return new GiphDetails(giphId, width, height, size, url, title, username, userDisplayName, userDescription, userProfileUrl, userAvatarUrl, created, source, embedUrl);
         } catch (error) {
             this.handleHttpError(error);
         }

@@ -6,12 +6,16 @@ import "@popperjs/core";
 import "bootstrap";
 import "reflect-metadata";
 import { Configuration, getConfiguration } from "./common/configuration";
-import GiphList from "./components/GiphList/GiphList.vue";
-import GiphSearchBox from "./components/GiphSearchBox/GiphSearchBox.vue";
-import GiphStatusBar from "./components/GiphStatusBar/GiphStatusBar.vue";
+import GiphInfo from "./components/GiphDetails/GiphInfo/GiphInfo.vue";
+import GiphStatusBar from "./components/GiphDetails/GiphStatusBar/GiphStatusBar.vue";
+import GiphTitleBar from "./components/GiphDetails/GiphTitleBar/GiphTitleBar.vue";
+import GiphList from "./components/GiphSearch/GiphList/GiphList.vue";
+import GiphPager from "./components/GiphSearch/GiphPager/GiphPager.vue";
+import GiphSearchBox from "./components/GiphSearch/GiphSearchBox/GiphSearchBox.vue";
 import Layout from "./components/Layout/Layout.vue";
 import { AutoFocusDirective } from "./directives/AutoFocusDirective";
 import { AutoSelectDirective } from "./directives/AutoSelectDirective";
+import { formatBytes } from "./common/pipes/formatBytes";
 import App from "./pages/App/App.vue";
 import { GiphyApiClient } from "./services/api/GiphyApiClient";
 import { IGiphyApiClient } from "./services/api/IGiphyApiClient";
@@ -23,11 +27,12 @@ import { StateManager } from "./services/state/stateManager";
 import { store } from "./services/state/store";
 import { cid, container } from "inversify-props";
 import { createApp } from "vue";
+import ChevronTrippleLeftIcon from "vue-material-design-icons/ChevronTripleLeft.vue";
 import CloseIcon from "vue-material-design-icons/Close.vue";
+import DownloadIcon from "vue-material-design-icons/Download.vue";
 import ImageSearchOutlineIcon from "vue-material-design-icons/ImageSearchOutline.vue";
 import MagnifyIcon from "vue-material-design-icons/Magnify.vue";
 import SyncIcon from "vue-material-design-icons/Sync.vue";
-import DownloadIcon from "vue-material-design-icons/Download.vue";
 
 // configuration
 const configuration: Configuration = getConfiguration();
@@ -45,6 +50,10 @@ app.component("layout", Layout);
 
 app.component("giph-search-box", GiphSearchBox);
 app.component("giph-list", GiphList);
+app.component("giph-pager", GiphPager);
+
+app.component("giph-title-bar", GiphTitleBar);
+app.component("giph-info", GiphInfo);
 app.component("giph-status-bar", GiphStatusBar);
 
 // register icons
@@ -53,6 +62,7 @@ app.component("icon-clear", CloseIcon);
 app.component("icon-giph", ImageSearchOutlineIcon);
 app.component("icon-loading", SyncIcon);
 app.component("icon-load-more", DownloadIcon);
+app.component("icon-back", ChevronTrippleLeftIcon);
 
 // register directives
 app.directive("auto-focus", AutoFocusDirective);

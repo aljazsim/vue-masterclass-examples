@@ -15,26 +15,25 @@ export default class GiphSearch extends Vue {
         return this.stateManager.state.giphs.items;
     }
 
+    public get isLoading(): boolean {
+        return this.stateManager.state.isLoading;
+    }
+
     public get itemCount(): number {
         return this.stateManager.state.giphs.items?.length;
+    }
+
+    public get searchKeywords(): string {
+        return this.stateManager.state.giphs.search;
     }
 
     public get totalItemCount(): number {
         return this.stateManager.state.giphs.totalItemCount;
     }
 
-    public get isLoading(): boolean {
-        return this.stateManager.state.isLoading;
-    }
-
-    public async onSearch(searchKeywords: string): Promise<void> {
+    public onClear(): void {
         this.stateManager.setIsLoading(true);
-
-        const page = 1;
-        const pageSize = this.stateManager.state.giphs.pageSize;
-        const giphs = await this.giphyApiClient.searchGiphs(searchKeywords, page, pageSize);
-
-        this.stateManager.setGiphs(giphs.items, giphs.totalItemCount, giphs.page, giphs.pageSize, giphs.pageCount, searchKeywords);
+        this.stateManager.setGiphs([], 0, 1, this.stateManager.state.giphs.pageSize, 0, "");
         this.stateManager.setIsLoading(false);
     }
 
@@ -54,9 +53,14 @@ export default class GiphSearch extends Vue {
         setTimeout(() => (this.$refs.statusBar as Vue).$el.scrollIntoView({ behavior: "smooth" }), 1000);
     }
 
-    public onClear(): void {
+    public async onSearch(searchKeywords: string): Promise<void> {
         this.stateManager.setIsLoading(true);
-        this.stateManager.setGiphs([], 0, 1, this.stateManager.state.giphs.pageSize, 0, "");
+
+        const page = 1;
+        const pageSize = this.stateManager.state.giphs.pageSize;
+        const giphs = await this.giphyApiClient.searchGiphs(searchKeywords, page, pageSize);
+
+        this.stateManager.setGiphs(giphs.items, giphs.totalItemCount, giphs.page, giphs.pageSize, giphs.pageCount, searchKeywords);
         this.stateManager.setIsLoading(false);
     }
 

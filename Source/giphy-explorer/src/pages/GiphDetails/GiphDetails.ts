@@ -19,6 +19,10 @@ export default class GiphDetails extends Vue {
         return this.stateManager.state.isLoading;
     }
 
+    public goToGiphSearch(): void {
+        this.routingManager.goToGiphSearch();
+    }
+
     public async mounted(): Promise<void> {
         const giphId = this.routingManager.getGiphDetailsParams()?.giphId;
 
@@ -27,7 +31,7 @@ export default class GiphDetails extends Vue {
         }
 
         if (!this.giph) {
-            this.routingManager.goToGiphSearch();
+            this.goToGiphSearch();
         }
     }
 }
