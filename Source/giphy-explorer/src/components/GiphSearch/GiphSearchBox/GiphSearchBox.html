@@ -1,5 +1,5 @@
 <div class="d-flex flex-fill justify-content-between align-items-stretch search-box p-3" :class="{ 'search-box-disabled': isLoading }">
-    <input type="text" max-length="50" class="form-control search-input" placeholder="Search Giphs" v-model="model" v-auto-focus v-auto-select :disabled="isLoading" @keydown.enter="search()" ref="input">
+    <input type="text" max-length="50" class="form-control search-input" placeholder="Search Giphs" v-model="model" v-auto-focus v-auto-select :disabled="isLoading" @keydown.enter="search()" @keydown.esc="clear()" ref="input">
 
     <button class="btn btn-primary text-bright text-capitalize search-button ms-2 px-4 d-flex flex-row justify-content-center align-items-center" :disabled="!canSearch" type="button" @click="search()">
         <icon-search class="me-2" />

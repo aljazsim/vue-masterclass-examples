@@ -1,7 +1,7 @@
 <layout>
     <!-- search box -->
     <div class="d-flex">
-        <giph-search-box :isLoading="isLoading" :searchKeywords="searchKeywords" :hasItems="itemCount > 0" @search="onSearch($event)" @clear="onClear()"></giph-search-box>
+        <giph-search-box :isLoading="isLoading" :searchKeywords="searchKeywords" :hasItems="itemCount > 0" :cleared="cleared" @search="onSearch($event)" @clear="onClear()"></giph-search-box>
     </div>
 
     <!-- list -->

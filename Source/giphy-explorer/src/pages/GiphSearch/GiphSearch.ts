@@ -4,12 +4,19 @@ import { IGiphyApiClient } from "../../services/api/IGiphyApiClient";
 import { IRoutingManager } from "../../services/router/IRoutingManager";
 import { IStateManager } from "../../services/state/IStateManager";
 import { inject } from "inversify-props";
+import { Observable, Observer, Subject } from "rxjs";
 import { Vue } from "vue-class-component";
 
 export default class GiphSearch extends Vue {
     @inject() private readonly giphyApiClient!: IGiphyApiClient;
     @inject() private readonly routingManager!: IRoutingManager;
     @inject() private readonly stateManager!: IStateManager;
+
+    public readonly clearedObserver: Observer<void> = new Subject<void>();
+
+    public get cleared(): Observable<void> {
+        return this.clearedObserver as Subject<void>;
+    }
 
     public get giphs(): Giph[] {
         return this.stateManager.state.giphs.items;
@@ -31,10 +38,16 @@ export default class GiphSearch extends Vue {
         return this.stateManager.state.giphs.totalItemCount;
     }
 
+    public mounted(): void {
+        window.addEventListener("keydown", this.onKeyDown);
+    }
+
     public onClear(): void {
         this.stateManager.setIsLoading(true);
         this.stateManager.setGiphs([], 0, 1, this.stateManager.state.giphs.pageSize, 0, "");
         this.stateManager.setIsLoading(false);
+
+        this.clearedObserver.next();
     }
 
     public async onLoadMore(): Promise<void> {
@@ -64,5 +77,15 @@ export default class GiphSearch extends Vue {
     public onSelect(giph: Giph): void {
         this.stateManager.selectGiph(null);
         this.routingManager.goToGiphDetails(giph);
+    }
+
+    public unmounted(): void {
+        window.removeEventListener("keydown", this.onKeyDown);
+    }
+
+    private onKeyDown(event: KeyboardEvent): void {
+        if (event.key === "Escape") {
+            this.onClear();
+        }
     }
 }
