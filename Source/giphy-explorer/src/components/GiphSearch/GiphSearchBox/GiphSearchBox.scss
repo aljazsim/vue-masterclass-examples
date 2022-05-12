@@ -2,6 +2,7 @@
     border: 1px solid #ced4da;
     border-radius: 0.25rem;
     background-color: white;
+    gap: 0.5rem;
 }
 
 .search-box-disabled {
@@ -13,11 +14,12 @@
 .search-input:active,
 .search-input:hover,
 .search-input:disabled {
-    border: none !important;
+    // border: none !important;
     background: none !important;
     outline: 0px !important;
     box-shadow: none !important;
     font-size: 1.3rem;
-    padding: 0px;
+    padding: 0;
     -webkit-appearance: none;
+    width: auto !important;
 }

@@ -14,6 +14,10 @@ body {
     color: #232326;
 }
 
+button {
+    min-width: 8rem;
+}
+
 /* scrollbar */
 ::-webkit-scrollbar {
     width: 4px;

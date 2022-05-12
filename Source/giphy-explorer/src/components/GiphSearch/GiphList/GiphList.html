@@ -1,40 +1,38 @@
 <div class="d-flex flex-grow-1 flex-column my-4 giph-list" :class="{ 'giph-list-disabled': isLoading }">
-    <div ref="giphListScrollContainer" class="d-flex flex-column">
-        <div class="d-flex flex-grow-1 flex-column p-4 me-2 my-2 overflow-auto">
-            <!-- giphs -->
-            <div class="d-flex flex-row flex-wrap justify-content-evenly giph-image-container">
-                <div v-for="giph in giphs" :key="giph.url" class="giph-image hand fadein-animation grow-on-hover" @click="select(giph)">
-                    <img :src="giph.url" :width="giph.width" :height="giph.height" />
-                </div>
-            </div>
+    <!-- scrolling wrapper -->
+    <div class="d-flex flex-grow-1 flex-column p-4 me-2 my-2 overflow-auto giph-list-scroll">
 
-            <!-- giphs placeholder -->
-            <div class="d-flex flex-fill flex-column justify-content-center align-items-center my-2" v-if="!isLoading && giphs?.length === 0">
-                <span class="giphy-explorer text-center text-wrap mb-4">giphy explorer</span>
-                <icon-giph :size="200" />
-            </div>
+        <!-- giph images -->
+        <div class="d-flex flex-row flex-wrap justify-content-evenly giph-image-container">
+            <img v-for="giph in giphs" :key="giph.id" :src="giph.url" class="giph-image hand fadein-animation grow-on-hover" @click="select(giph)" />
+        </div>
 
-            <!-- loading -->
-            <div class="d-flex flex-fill flex-column justify-content-center align-items-center my-2" v-if="isLoading && giphs?.length === 0">
-                <span class="giphy-explorer mb-4">loading...</span>
-                <icon-loading :size="200" class="rotate-counter-clockwise" />
-            </div>
+        <!-- giphs placeholder -->
+        <div class="d-flex flex-fill flex-column justify-content-center align-items-center my-2" v-if="!isLoading && giphs?.length === 0">
+            <span class="giphy-explorer text-center text-wrap fw-bold mb-4">giphy explorer</span>
+            <icon-giph :size="200" />
+        </div>
 
-            <!-- load more -->
-            <div class="d-flex justify-content-center mt-4" v-if="!isLoading && canLoadMore">
-                <button class="btn btn-secondary text-bright text-capitalize load-more-button px-4 d-flex flex-row justify-content-center align-items-center" :disabled="isLoading" type="button" @click="loadMore()">
-                    <icon-load-more class="me-2" />
-                    Load more
-                </button>
-            </div>
+        <!-- loading -->
+        <div class="d-flex flex-fill flex-column justify-content-center align-items-center my-2" v-if="isLoading && giphs?.length === 0">
+            <span class="giphy-explorer text-center text-wrap fw-bold mb-4">loading...</span>
+            <icon-loading :size="200" class="rotate-counter-clockwise" />
+        </div>
 
-            <!-- load more loading -->
-            <div class="d-flex justify-content-center mt-4" v-if="isLoading && giphs?.length > 0">
-                <button class="btn btn-secondary text-bright text-capitalize load-more-button px-4 d-flex flex-row justify-content-center align-items-center" disabled type="button">
-                    <icon-loading class="rotate-counter-clockwise me-2" />
-                    Loading
-                </button>
-            </div>
+        <!-- load more -->
+        <div class="d-flex justify-content-center mt-4" v-if="!isLoading && canLoadMore">
+            <button class="btn btn-secondary text-bright text-capitalize load-more-button px-4 d-flex flex-row justify-content-center align-items-center" :disabled="isLoading" type="button" @click="loadMore()">
+                <icon-load-more class="me-2" />
+                Load more
+            </button>
+        </div>
+
+        <!-- load more loading -->
+        <div class="d-flex justify-content-center mt-4" v-if="isLoading && giphs?.length > 0">
+            <button class="btn btn-secondary text-bright text-capitalize load-more-button px-4 d-flex flex-row justify-content-center align-items-center" disabled type="button">
+                <icon-loading class="rotate-counter-clockwise me-2" />
+                Loading
+            </button>
         </div>
     </div>
 </div>
