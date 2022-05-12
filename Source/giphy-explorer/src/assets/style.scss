@@ -11,11 +11,15 @@ body {
 body {
     background-color: #f6f6f7;
     font-family: "Noto Sans";
-    color: #232326;
+    color: #666666 !important;
+}
+
+input {
+    color: #666666 !important;
 }
 
 button {
-    min-width: 8rem;
+    min-width: 8.5rem;
 }
 
 /* scrollbar */

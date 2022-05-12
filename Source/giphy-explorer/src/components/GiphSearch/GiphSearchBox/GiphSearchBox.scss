@@ -9,12 +9,16 @@
     background-color: #f6f6f7;
 }
 
+.search-box-buttons {
+    gap: 0.5rem;
+}
+
 .search-input,
 .search-input:focus,
 .search-input:active,
 .search-input:hover,
 .search-input:disabled {
-    // border: none !important;
+    border: none !important;
     background: none !important;
     outline: 0px !important;
     box-shadow: none !important;
@@ -22,4 +26,6 @@
     padding: 0;
     -webkit-appearance: none;
     width: auto !important;
+    min-width: 0 !important;
+    text-align: center;
 }

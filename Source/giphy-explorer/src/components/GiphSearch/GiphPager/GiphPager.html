@@ -1,5 +1,5 @@
 <div class="d-flex flex-fill justify-content-between align-items-center pager p-3" :class="{ 'pager-disabled': isLoading }">
-    <span v-if="itemCount && totalItemCount">Displaying {{ itemCount }} of {{ totalItemCount }} giphs</span>
+    <span class="text-center" v-if="itemCount && totalItemCount">Displaying {{ itemCount }} of {{ totalItemCount }} giphs</span>
     <span v-else>&nbsp;</span>
 
     <div class="d-flex flex-row flex-wrap justify-content-center mx-4">
@@ -10,5 +10,5 @@
         <span class="text-center">By <a href="https://github.com/aljazsim">Aljaz Simonic</a> 2022</span>
     </div>
 
-    <span>Powered by <a href="https://giphy.com/">Giphy</a></span>
+    <span class="text-center">Powered by <a href="https://giphy.com/">Giphy</a></span>
 </div>
