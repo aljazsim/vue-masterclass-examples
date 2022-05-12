@@ -8,13 +8,13 @@
         </div>
 
         <!-- giphs placeholder -->
-        <div class="d-flex flex-fill flex-column justify-content-center align-items-center my-2" v-if="!isLoading && giphs?.length === 0">
+        <div class="d-flex flex-fill flex-column justify-content-center align-items-center my-2 light-gray" v-if="!isLoading && giphs?.length === 0">
             <span class="giphy-explorer text-center text-wrap fw-bold mb-4">giphy explorer</span>
             <icon-giph :size="200" />
         </div>
 
         <!-- loading -->
-        <div class="d-flex flex-fill flex-column justify-content-center align-items-center my-2" v-if="isLoading && giphs?.length === 0">
+        <div class="d-flex flex-fill flex-column justify-content-center align-items-center my-2 light-gray" v-if="isLoading && giphs?.length === 0">
             <span class="giphy-explorer text-center text-wrap fw-bold mb-4">loading...</span>
             <icon-loading :size="200" class="rotate-counter-clockwise" />
         </div>
