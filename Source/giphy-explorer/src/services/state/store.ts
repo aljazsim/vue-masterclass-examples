@@ -13,7 +13,8 @@ export const store: Store<State> = createStore<State>({
             page: 1,
             pageCount: 0,
             pageSize: 10,
-            search: ""
+            search: "",
+            searchHistory: []
         }
     },
     mutations: mutations

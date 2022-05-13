@@ -30,6 +30,10 @@ export default class GiphSearch extends Vue {
         return this.stateManager.state.giphs.items?.length;
     }
 
+    public get searchHistory(): string[] {
+        return this.stateManager.state.giphs.searchHistory;
+    }
+
     public get searchKeywords(): string {
         return this.stateManager.state.giphs.search;
     }
@@ -48,6 +52,10 @@ export default class GiphSearch extends Vue {
         this.stateManager.setIsLoading(false);
 
         this.clearedObserver.next();
+    }
+
+    public onClearSearchHistory(): void {
+        this.stateManager.clearSearchHistory();
     }
 
     public async onLoadMore(): Promise<void> {

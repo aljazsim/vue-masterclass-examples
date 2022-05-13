@@ -8,7 +8,8 @@ export interface State {
         page: number;
         pageSize: number;
         pageCount: number;
-        search: string
+        search: string;
+        searchHistory: string[];
     },
     isLoading: boolean;
 }

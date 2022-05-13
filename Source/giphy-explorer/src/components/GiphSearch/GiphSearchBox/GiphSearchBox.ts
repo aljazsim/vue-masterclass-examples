@@ -8,6 +8,7 @@ export default class GiphSearchBox extends Vue {
     @Prop() public cleared!: Observable<void>;
     @Prop() public hasItems!: boolean;
     @Prop() public isLoading!: boolean;
+    @Prop() public searchHistory!: string[];
     @Prop() public searchKeywords!: string;
 
     public model = "";
@@ -18,6 +19,10 @@ export default class GiphSearchBox extends Vue {
 
     public get canSearch(): boolean {
         return !this.isLoading && this.model?.length > 0;
+    }
+
+    public get canSeeSearchHistory(): boolean {
+        return !this.isLoading && this.searchHistory.length > 0;
     }
 
     private get input(): HTMLInputElement {
@@ -36,14 +41,18 @@ export default class GiphSearchBox extends Vue {
         this.model = newValue;
     }
 
-    public clear(): void {
+    public onClear(): void {
         this.model = "";
         this.emitClearEvent();
     }
 
-    public search(): void {
-        if (this.model?.length > 0) {
-            this.emitSearchEvent(this.model);
+    public onClearSearchHistory() {
+        this.emitClearSearchHistory();
+    }
+
+    public onSearch(searchKeywords: string): void {
+        if (searchKeywords?.length > 0) {
+            this.emitSearchEvent(searchKeywords);
         }
     }
 
@@ -54,6 +63,10 @@ export default class GiphSearchBox extends Vue {
 
     private emitClearEvent() {
         this.$emit("clear");
+    }
+
+    private emitClearSearchHistory() {
+        this.$emit("clearSearchHistory");
     }
 
     private emitSearchEvent(searchKeywords: string) {

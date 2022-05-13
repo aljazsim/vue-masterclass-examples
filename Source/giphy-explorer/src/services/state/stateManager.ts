@@ -1,7 +1,7 @@
 import { BasicGiphInfo } from "../../common/basicGiphInfo";
 import { IStateManager } from "./IStateManager";
 import { State } from "./state";
-import { selectGiph, setGiphs, setIsLoading } from "./storeMutations";
+import { clearSearchHistory, selectGiph, setGiphs, setIsLoading } from "./storeMutations";
 import { Store } from "vuex";
 
 export class StateManager implements IStateManager {
@@ -10,6 +10,10 @@ export class StateManager implements IStateManager {
 
     public get state(): State {
         return this.store.state;
+    }
+
+    public clearSearchHistory(): void {
+        this.store.commit(clearSearchHistory);
     }
 
     public selectGiph(giph: BasicGiphInfo | null): void {

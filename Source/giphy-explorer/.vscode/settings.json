@@ -47,5 +47,11 @@
         "**/dist": true,
         "**/coverage": true
     },
-    "cSpell.enabled": true
+    "cSpell.enabled": true,
+    "cSpell.words": [
+        "Giph",
+        "Giphs",
+        "Giphy",
+        "inversify"
+    ]
 }

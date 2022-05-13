@@ -1,15 +1,33 @@
 <div class="d-flex d-row flex-grow-1 flex-wrap justify-content-center align-items-stretch search-box p-3" :class="{ 'search-box-disabled': isLoading }">
     <div class="d-flex flex-column flex-grow-1 align-items-stretch">
-        <input type="text" max-length="50" class="d-flex flex-grow-1 search-input" placeholder="Search Giphs" v-model="model" v-auto-focus v-auto-select :disabled="isLoading" @keydown.enter="search()" @keydown.esc="clear()" ref="input">
+        <input type="text" max-length="50" class="d-flex flex-grow-1 search-input" placeholder="Search Giphs" v-model="model" v-auto-focus v-auto-select :disabled="isLoading" @keydown.enter="onSearch(model)" @keydown.esc="onClear()" ref="input">
     </div>
 
     <div class="d-flex d-row flex-wrap search-box-buttons">
-        <button class="btn btn-primary text-bright text-capitalize px-4 d-flex flex-row justify-content-center align-items-center" :disabled="!canSearch" type="button" @click="search()">
-            <icon-search class="me-2" />
-            Search
-        </button>
+        <div class="btn-group">
+            <button type="button" class="btn btn-primary" :disabled="!canSearch" @click="onSearch(model)">
+                <icon-search class="me-2" />
+                Search
+            </button>
+            <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split button-auto-width" data-bs-toggle="dropdown" aria-expanded="false" :disabled="!canSeeSearchHistory">
+                <span class="visually-hidden">Toggle Dropdown</span>
+            </button>
+            <ul class="dropdown-menu">
+                <li class="text-center p-2 no-click">
+                    Search history
+                </li>
+                <li v-for="searchHistoryItem in searchHistory" class="dropdown-item hand bold-on-hover" @click="onSearch(searchHistoryItem)">
+                    <icon-search class="me-2" />
+                    {{ searchHistoryItem }}
+                </li>
+                <li class="dropdown-item hand bold-on-hover" @click="onClearSearchHistory">
+                    <icon-clear class="me-2" />
+                    Clear history
+                </li>
+            </ul>
+        </div>
 
-        <button class="btn btn-danger text-bright text-capitalize px-4 d-flex flex-row justify-content-center align-items-center" :disabled="!canClear" type="button" @click="clear()">
+        <button class="btn btn-danger text-bright text-capitalize px-4" :disabled="!canClear" type="button" @click="onClear()">
             <icon-clear class="me-2" />
             Clear
         </button>
