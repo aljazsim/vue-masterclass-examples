@@ -1,8 +1,9 @@
-import { Giph } from "../../common/giph";
-import { GiphDetails } from "../../common/giphDetails";
+import { BasicGiphInfo } from "../../common/basicGiphInfo";
+import { DetailedGiphInfo } from "../../common/detailedGiphInfo";
 import { PagedList } from "../../common/pagedList";
 
 export interface IGiphyApiClient {
-    searchGiphs(searchKeywords: string, page: number, pageSize: number): Promise<PagedList<Giph>>;
-    getGiphDetails(giphId: string): Promise<GiphDetails>;
+    downloadFile(url: string, fileName: string): Promise<void>;
+    getGiphDetails(giphId: string): Promise<DetailedGiphInfo>;
+    searchGiphs(searchKeywords: string, page: number, pageSize: number): Promise<PagedList<BasicGiphInfo>>;
 }

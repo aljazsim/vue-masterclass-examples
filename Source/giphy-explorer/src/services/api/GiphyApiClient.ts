@@ -1,5 +1,5 @@
-import { Giph } from "../../common/giph";
-import { GiphDetails } from "../../common/giphDetails";
+import { BasicGiphInfo } from "../../common/basicGiphInfo";
+import { DetailedGiphInfo } from "../../common/detailedGiphInfo";
 import { PagedList } from "../../common/pagedList";
 import { IGiphyApiClient } from "./IGiphyApiClient";
 import { GetGiphResponse } from "./responses/GetGiphResponse";
@@ -16,7 +16,22 @@ export class GiphyApiClient implements IGiphyApiClient {
         this.http.interceptors.request.use(this.convertRequestToSnakeCase);
     }
 
-    public async getGiphDetails(giphId: string): Promise<GiphDetails> {
+    public async downloadFile(url: string, fileName: string): Promise<void> {
+        const response = await axios.get(url, { responseType: "arraybuffer" });
+        const href = window.URL.createObjectURL(new Blob([response.data]));
+        const link = document.createElement("a");
+
+        link.href = href;
+        link.download = fileName;
+
+        document.body.appendChild(link);
+
+        link.click();
+
+        document.body.removeChild(link);
+    }
+
+    public async getGiphDetails(giphId: string): Promise<DetailedGiphInfo> {
         const configuration = this.getHttpConfiguration(this.apiKey);
 
         configuration.params.gif_id = giphId;
@@ -28,6 +43,7 @@ export class GiphyApiClient implements IGiphyApiClient {
             const height = giph.images.original.height;
             const size = giph.images.original.size;
             const url = giph.images.original.url;
+            const type = "gif";
             const title = giph.title;
             const username = giph.user?.username;
             const userDisplayName = giph.user?.display_name;
@@ -38,13 +54,13 @@ export class GiphyApiClient implements IGiphyApiClient {
             const source = giph.source;
             const embedUrl = giph.embed_url;
 
-            return new GiphDetails(giphId, width, height, size, url, title, username, userDisplayName, userDescription, userProfileUrl, userAvatarUrl, created, source, embedUrl);
+            return new DetailedGiphInfo(giphId, width, height, size, url, type, title, username, userDisplayName, userDescription, userProfileUrl, userAvatarUrl, created, source, embedUrl);
         } catch (error) {
             this.handleHttpError(error);
         }
     }
 
-    public async searchGiphs(searchKeywords: string, page: number, pageSize: number): Promise<PagedList<Giph>> {
+    public async searchGiphs(searchKeywords: string, page: number, pageSize: number): Promise<PagedList<BasicGiphInfo>> {
         const configuration = this.getHttpConfiguration(this.apiKey);
 
         configuration.params.q = searchKeywords;
@@ -56,9 +72,9 @@ export class GiphyApiClient implements IGiphyApiClient {
             const data = response.data;
             const totalItemCount = data.pagination.total_count;
             const pageCount = Math.ceil(data.pagination.total_count / pageSize);
-            const giphs = data.data.map(d => new Giph(d.id, d.images.fixed_height.width, d.images.fixed_height.height, d.images.fixed_height.url));
+            const giphs = data.data.map(d => new BasicGiphInfo(d.id, d.images.fixed_height.width, d.images.fixed_height.height, d.images.fixed_height.url));
 
-            return new PagedList<Giph>(totalItemCount, giphs, page, pageSize, pageCount);
+            return new PagedList<BasicGiphInfo>(totalItemCount, giphs, page, pageSize, pageCount);
         } catch (error) {
             this.handleHttpError(error);
         }

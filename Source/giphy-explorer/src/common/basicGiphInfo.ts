@@ -1,4 +1,4 @@
-export class Giph {
+export class BasicGiphInfo {
     constructor(
         public readonly id: string,
         public readonly width: string,

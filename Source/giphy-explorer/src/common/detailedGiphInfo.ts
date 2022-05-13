@@ -1,10 +1,11 @@
-export class GiphDetails {
+export class DetailedGiphInfo {
     constructor(
         public readonly id: string,
         public readonly width: string,
         public readonly height: string,
         public readonly size: string,
         public readonly url: string,
+        public readonly type: string,
         public readonly title: string,
         public readonly username: string,
         public readonly userDisplayName: string,

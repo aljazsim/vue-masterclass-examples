@@ -1,5 +1,6 @@
 import "reflect-metadata";
-import { Giph } from "../../common/giph";
+import { BasicGiphInfo } from "../../common/basicGiphInfo";
+import { DetailedGiphInfo } from "../../common/detailedGiphInfo";
 import { IGiphyApiClient } from "../../services/api/IGiphyApiClient";
 import { IRoutingManager } from "../../services/router/IRoutingManager";
 import { IStateManager } from "../../services/state/IStateManager";
@@ -11,7 +12,7 @@ export default class GiphDetails extends Vue {
     @inject() private readonly routingManager!: IRoutingManager;
     @inject() private readonly stateManager!: IStateManager;
 
-    public get giph(): Giph | null {
+    public get giph(): BasicGiphInfo | null {
         return this.stateManager.state.giphs.selectedItem;
     }
 
@@ -37,5 +38,9 @@ export default class GiphDetails extends Vue {
         if (!this.giph) {
             this.goToGiphSearch();
         }
+    }
+
+    public onSave(giph: DetailedGiphInfo) {
+        this.giphyApiClient.downloadFile(giph.url, `${giph.title}.${giph.type}`);
     }
 }

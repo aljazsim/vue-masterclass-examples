@@ -1,4 +1,4 @@
-import { Giph } from "../../common/giph";
+import { BasicGiphInfo } from "../../common/basicGiphInfo";
 import { IRoutingManager } from "./IRoutingManager";
 import { giphDetailsRouteName, giphSearchRouteName } from "./routing";
 import { Router, useRoute } from "vue-router";
@@ -17,7 +17,7 @@ export class RoutingManager implements IRoutingManager {
         }
     }
 
-    public goToGiphDetails(giph: Giph): void {
+    public goToGiphDetails(giph: BasicGiphInfo): void {
         this.router.push({ name: giphDetailsRouteName, params: { giphId: giph.id } });
     }
 

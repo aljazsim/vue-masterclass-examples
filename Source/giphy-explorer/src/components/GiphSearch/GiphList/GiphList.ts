@@ -1,18 +1,18 @@
 import "reflect-metadata";
-import { Giph } from "../../../common/giph";
+import { BasicGiphInfo } from "../../../common/basicGiphInfo";
 import { Vue } from "vue-class-component";
 import { Prop } from "vue-property-decorator";
 
 export default class GiphList extends Vue {
     @Prop() public canLoadMore!: boolean;
-    @Prop() public giphs!: Giph[];
+    @Prop() public giphs!: BasicGiphInfo[];
     @Prop() public isLoading!: boolean;
 
     public loadMore() {
         this.emitLoadMoreEvent();
     }
 
-    public select(giph: Giph) {
+    public select(giph: BasicGiphInfo) {
         this.emitSelectEvent(giph);
     }
 
@@ -20,7 +20,7 @@ export default class GiphList extends Vue {
         this.$emit("loadMore");
     }
 
-    private emitSelectEvent(giph: Giph) {
+    private emitSelectEvent(giph: BasicGiphInfo) {
         this.$emit("select", giph);
     }
 }

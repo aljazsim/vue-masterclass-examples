@@ -1,5 +1,5 @@
 import "reflect-metadata";
-import { Giph } from "../../common/giph";
+import { BasicGiphInfo } from "../../common/basicGiphInfo";
 import { IGiphyApiClient } from "../../services/api/IGiphyApiClient";
 import { IRoutingManager } from "../../services/router/IRoutingManager";
 import { IStateManager } from "../../services/state/IStateManager";
@@ -18,7 +18,7 @@ export default class GiphSearch extends Vue {
         return this.clearedObserver as Subject<void>;
     }
 
-    public get giphs(): Giph[] {
+    public get giphs(): BasicGiphInfo[] {
         return this.stateManager.state.giphs.items;
     }
 
@@ -74,7 +74,7 @@ export default class GiphSearch extends Vue {
         this.stateManager.setIsLoading(false);
     }
 
-    public onSelect(giph: Giph): void {
+    public onSelect(giph: BasicGiphInfo): void {
         this.stateManager.selectGiph(null);
         this.routingManager.goToGiphDetails(giph);
     }

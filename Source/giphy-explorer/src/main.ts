@@ -15,7 +15,6 @@ import GiphSearchBox from "./components/GiphSearch/GiphSearchBox/GiphSearchBox.v
 import Layout from "./components/Layout/Layout.vue";
 import { AutoFocusDirective } from "./directives/AutoFocusDirective";
 import { AutoSelectDirective } from "./directives/AutoSelectDirective";
-import { formatBytes } from "./common/pipes/formatBytes";
 import App from "./pages/App/App.vue";
 import { GiphyApiClient } from "./services/api/GiphyApiClient";
 import { IGiphyApiClient } from "./services/api/IGiphyApiClient";
@@ -30,6 +29,7 @@ import { createApp } from "vue";
 import ChevronTrippleLeftIcon from "vue-material-design-icons/ChevronTripleLeft.vue";
 import CloseIcon from "vue-material-design-icons/Close.vue";
 import DownloadIcon from "vue-material-design-icons/Download.vue";
+import ContentSaveOutlineIcon from "vue-material-design-icons/ContentSaveOutline.vue";
 import ImageSearchOutlineIcon from "vue-material-design-icons/ImageSearchOutline.vue";
 import MagnifyIcon from "vue-material-design-icons/Magnify.vue";
 import SyncIcon from "vue-material-design-icons/Sync.vue";
@@ -63,6 +63,7 @@ app.component("icon-giph", ImageSearchOutlineIcon);
 app.component("icon-loading", SyncIcon);
 app.component("icon-load-more", DownloadIcon);
 app.component("icon-back", ChevronTrippleLeftIcon);
+app.component("icon-save", ContentSaveOutlineIcon);
 
 // register directives
 app.directive("auto-focus", AutoFocusDirective);

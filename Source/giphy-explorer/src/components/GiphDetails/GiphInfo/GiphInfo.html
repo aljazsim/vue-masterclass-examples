@@ -7,6 +7,14 @@
                     <img :src="giph?.url" class="giph-image grow-on-hover" />
                 </td>
             </tr>
+            <tr v-if="giph?.url">
+                <td class="text-center" colspan="2">
+                    <button class="btn btn-primary text-bright text-capitalize px-4" :disabled="isLoading" type="button" @click="save()">
+                        <icon-save class="me-2" />
+                        Save
+                    </button>
+                </td>
+            </tr>
             <tr>
                 <td colspan="2" class="fw-bold pt-5">Giph information</td>
             </tr>
