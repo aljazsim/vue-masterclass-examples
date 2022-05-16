@@ -11,11 +11,19 @@ export default class GiphInfo extends Vue {
         return formatBytes(value);
     }
 
-    public save() {
+    public onSave() {
         this.emitSaveEvent(this.giph);
     }
 
-    private emitSaveEvent(giphDetails: DetailedGiphInfo) {
-        this.$emit("save", giphDetails);
+    public async onCopy(): Promise<void> {
+        this.emitCopyEvent(this.giph);
+    }
+
+    private emitSaveEvent(giph: DetailedGiphInfo) {
+        this.$emit("save", giph);
+    }
+
+    private emitCopyEvent(giph: DetailedGiphInfo) {
+        this.$emit("copy", giph);
     }
 }

@@ -26,6 +26,8 @@ export class StateManager implements IStateManager {
     }
 
     public setIsLoading(isLoading: boolean): void {
+        document.body.style.cursor = isLoading ? "progress" : "default";
+
         this.store.commit(setIsLoading, isLoading);
     }
 }

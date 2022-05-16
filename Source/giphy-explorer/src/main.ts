@@ -30,6 +30,7 @@ import { createApp } from "vue";
 import ChevronTrippleLeftIcon from "vue-material-design-icons/ChevronTripleLeft.vue";
 import CloseIcon from "vue-material-design-icons/Close.vue";
 import ContentSaveOutlineIcon from "vue-material-design-icons/ContentSaveOutline.vue";
+import ContentCopyIcon from "vue-material-design-icons/ContentCopy.vue";
 import DownloadIcon from "vue-material-design-icons/Download.vue";
 import ImageSearchOutlineIcon from "vue-material-design-icons/ImageSearchOutline.vue";
 import MagnifyIcon from "vue-material-design-icons/Magnify.vue";
@@ -70,6 +71,7 @@ app.component("icon-loading", SyncIcon);
 app.component("icon-load-more", DownloadIcon);
 app.component("icon-back", ChevronTrippleLeftIcon);
 app.component("icon-save", ContentSaveOutlineIcon);
+app.component("icon-copy", ContentCopyIcon);
 
 // register directives
 app.directive("auto-focus", AutoFocusDirective);

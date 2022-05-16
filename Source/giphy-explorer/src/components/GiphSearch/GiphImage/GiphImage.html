@@ -1,10 +1,11 @@
 <vue-load-image>
     <template v-slot:image>
-        <img :src="giph.url" :width="giph.width" :height="giph.height" loading="lazy" />
+        <img :id="giph.id" :src="giph.url" :width="giph.width" :height="giph.height" loading="lazy" />
     </template>
     <template v-slot:preloader>
-        <div class="d-flex flex-fill flex-column justify-content-center align-items-center light-gray">
-            <span class="text-center text-wrap fw-bold mb-2">loading...</span>
+        <div class="d-flex flex-fill flex-column justify-content-center align-items-center light-gray p-2">
+            <span class="text-center text-wrap fw-bold mb-2">loading</span>
+            <span class="text-center text-wrap fw-bold mb-2">"{{ giph?.title }}"</span>
             <icon-loading :size="40" class="rotate-counter-clockwise" />
         </div>
     </template>

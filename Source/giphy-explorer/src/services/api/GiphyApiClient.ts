@@ -31,6 +31,10 @@ export class GiphyApiClient implements IGiphyApiClient {
         document.body.removeChild(link);
     }
 
+    public async getBlob(url: string): Promise<Blob> {
+        return (await axios.get(url, { responseType: "blob" })).data as Blob;
+    }
+
     public async getGiphDetails(giphId: string): Promise<DetailedGiphInfo> {
         const configuration = this.getHttpConfiguration(this.apiKey);
 
@@ -54,7 +58,7 @@ export class GiphyApiClient implements IGiphyApiClient {
             const source = giph.source;
             const embedUrl = giph.embed_url;
 
-            return new DetailedGiphInfo(giphId, width, height, url, size, type, title, username, userDisplayName, userDescription, userProfileUrl, userAvatarUrl, created, source, embedUrl);
+            return new DetailedGiphInfo(giphId, title, width, height, url, size, type, username, userDisplayName, userDescription, userProfileUrl, userAvatarUrl, created, source, embedUrl);
         } catch (error) {
             this.handleHttpError(error);
         }
@@ -72,7 +76,7 @@ export class GiphyApiClient implements IGiphyApiClient {
             const data = response.data;
             const totalItemCount = data.pagination.total_count;
             const pageCount = Math.ceil(data.pagination.total_count / pageSize);
-            const giphs = data.data.map(d => new BasicGiphInfo(d.id, d.images.fixed_height.width, d.images.fixed_height.height, d.images.fixed_height.url));
+            const giphs = data.data.map(d => new BasicGiphInfo(d.id, d.title, d.images.fixed_height.width, d.images.fixed_height.height, d.images.fixed_height.url));
 
             return new PagedList<BasicGiphInfo>(totalItemCount, giphs, page, pageSize, pageCount);
         } catch (error) {

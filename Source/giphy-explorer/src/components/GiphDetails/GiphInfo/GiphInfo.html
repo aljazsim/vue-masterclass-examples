@@ -5,7 +5,7 @@
             <tr v-if="giph?.url">
                 <td colspan="2">
                     <div class="d-flex justify-content-center align-items-center">
-                        <div :style="{ width: giph.width + 'px', height: giph.height + 'px' }" class="d-flex giph-image fadein-animation grow-on-hover" @click="select(giph)">
+                        <div :style="{ width: giph.width + 'px', height: giph.height + 'px' }" class="d-flex giph-image fadein-animation grow-on-hover">
                             <giph-image :giph="giph" class="d-flex flex-grow-1"></giph-image>
                         </div>
                     </div>
@@ -13,9 +13,14 @@
             </tr>
             <tr v-if="giph?.url">
                 <td class="text-center" colspan="2">
-                    <button class="btn btn-primary text-bright text-capitalize px-4" :disabled="isLoading" type="button" @click="save()">
+                    <button class="btn btn-primary text-bright text-capitalize px-4" :disabled="isLoading" type="button" @click="onSave()">
                         <icon-save class="me-2" />
                         Save
+                    </button>
+
+                    <button class="btn btn-primary text-bright text-capitalize px-4 ms-4" :disabled="isLoading" type="button" @click="onCopy()">
+                        <icon-copy class="me-2" />
+                        Copy URL
                     </button>
                 </td>
             </tr>

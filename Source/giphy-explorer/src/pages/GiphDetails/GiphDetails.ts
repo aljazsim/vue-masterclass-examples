@@ -1,5 +1,4 @@
 import "reflect-metadata";
-import { BasicGiphInfo } from "../../common/basicGiphInfo";
 import { DetailedGiphInfo } from "../../common/detailedGiphInfo";
 import { IGiphyApiClient } from "../../services/api/IGiphyApiClient";
 import { IRoutingManager } from "../../services/router/IRoutingManager";
@@ -40,7 +39,15 @@ export default class GiphDetails extends Vue {
         }
     }
 
-    public onSave(giph: DetailedGiphInfo) {
-        this.giphyApiClient.downloadFile(giph.url, `${giph.title}.${giph.type}`);
+    public async onSave(giph: DetailedGiphInfo): Promise<void> {
+        this.stateManager.setIsLoading(true);
+
+        await this.giphyApiClient.downloadFile(giph.url, `${giph.title}.${giph.type}`);
+
+        this.stateManager.setIsLoading(false);
+    }
+
+    public async onCopy(giph: DetailedGiphInfo): Promise<void> {
+        await navigator.clipboard.writeText(giph.url);
     }
 }
