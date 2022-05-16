@@ -12,6 +12,14 @@ export default class GiphList extends Vue {
         this.emitLoadMoreEvent();
     }
 
+    public onScroll(event: { target: HTMLDivElement }): void {
+        const { scrollTop, offsetHeight, scrollHeight } = event.target;
+
+        if ((scrollTop + offsetHeight) >= scrollHeight) {
+            this.emitLoadMoreEvent();
+        }
+    }
+
     public select(giph: BasicGiphInfo) {
         this.emitSelectEvent(giph);
     }
