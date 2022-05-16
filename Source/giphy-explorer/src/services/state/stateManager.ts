@@ -1,4 +1,5 @@
 import { BasicGiphInfo } from "../../common/basicGiphInfo";
+import { DetailedGiphInfo } from "../../common/detailedGiphInfo";
 import { IStateManager } from "./IStateManager";
 import { State } from "./state";
 import { clearSearchHistory, selectGiph, setGiphs, setIsLoading } from "./storeMutations";
@@ -16,7 +17,7 @@ export class StateManager implements IStateManager {
         this.store.commit(clearSearchHistory);
     }
 
-    public selectGiph(giph: BasicGiphInfo | null): void {
+    public selectGiph(giph: DetailedGiphInfo | null): void {
         this.store.commit(selectGiph, giph);
     }
 

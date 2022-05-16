@@ -1,9 +1,10 @@
 import { BasicGiphInfo } from "../../common/basicGiphInfo";
+import { DetailedGiphInfo } from "../../common/detailedGiphInfo";
 
 export interface State {
     giphs: {
         items: BasicGiphInfo[];
-        selectedItem: BasicGiphInfo | null;
+        selectedItem: DetailedGiphInfo | null;
         totalItemCount: number;
         page: number;
         pageSize: number;

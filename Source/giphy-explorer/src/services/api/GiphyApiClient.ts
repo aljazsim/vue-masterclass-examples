@@ -54,7 +54,7 @@ export class GiphyApiClient implements IGiphyApiClient {
             const source = giph.source;
             const embedUrl = giph.embed_url;
 
-            return new DetailedGiphInfo(giphId, width, height, size, url, type, title, username, userDisplayName, userDescription, userProfileUrl, userAvatarUrl, created, source, embedUrl);
+            return new DetailedGiphInfo(giphId, width, height, url, size, type, title, username, userDisplayName, userDescription, userProfileUrl, userAvatarUrl, created, source, embedUrl);
         } catch (error) {
             this.handleHttpError(error);
         }

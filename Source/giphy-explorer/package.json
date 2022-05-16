@@ -22,6 +22,7 @@
         "rxjs": "^7.5.5",
         "vue": "^3.0.0",
         "vue-class-component": "^8.0.0-0",
+        "vue-load-image": "^1.1.0",
         "vue-material-design-icons": "^5.0.0",
         "vue-property-decorator": "^9.1.2",
         "vue-router": "^4.0.0-0",

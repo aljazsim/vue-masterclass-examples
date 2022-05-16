@@ -3,8 +3,12 @@
     <div class="d-flex flex-grow-1 flex-column p-4 me-2 my-2 overflow-auto giph-info-scroll">
         <table cellpadding="8" class="text-wrap">
             <tr v-if="giph?.url">
-                <td class="text-center" colspan="2">
-                    <img :src="giph?.url" class="giph-image grow-on-hover" />
+                <td colspan="2">
+                    <div class="d-flex justify-content-center align-items-center">
+                        <div :style="{ width: giph.width + 'px', height: giph.height + 'px' }" class="d-flex giph-image fadein-animation grow-on-hover" @click="select(giph)">
+                            <giph-image :giph="giph" class="d-flex flex-grow-1"></giph-image>
+                        </div>
+                    </div>
                 </td>
             </tr>
             <tr v-if="giph?.url">

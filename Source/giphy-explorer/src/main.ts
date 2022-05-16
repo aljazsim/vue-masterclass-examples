@@ -9,7 +9,7 @@ import { Configuration, getConfiguration } from "./common/configuration";
 import GiphInfo from "./components/GiphDetails/GiphInfo/GiphInfo.vue";
 import GiphStatusBar from "./components/GiphDetails/GiphStatusBar/GiphStatusBar.vue";
 import GiphTitleBar from "./components/GiphDetails/GiphTitleBar/GiphTitleBar.vue";
-import GiphAutocomplete from "./components/GiphSearch/GiphAutocomplete/GiphAutocomplete.vue";
+import GiphImage from "./components/GiphSearch/GiphImage/GiphImage.vue";
 import GiphList from "./components/GiphSearch/GiphList/GiphList.vue";
 import GiphPager from "./components/GiphSearch/GiphPager/GiphPager.vue";
 import GiphSearchBox from "./components/GiphSearch/GiphSearchBox/GiphSearchBox.vue";
@@ -34,6 +34,7 @@ import DownloadIcon from "vue-material-design-icons/Download.vue";
 import ImageSearchOutlineIcon from "vue-material-design-icons/ImageSearchOutline.vue";
 import MagnifyIcon from "vue-material-design-icons/Magnify.vue";
 import SyncIcon from "vue-material-design-icons/Sync.vue";
+import VueLoadImage from "vue-load-image";
 
 // configuration
 const configuration: Configuration = getConfiguration();
@@ -46,11 +47,15 @@ container.bind<IRoutingManager>(cid.IRoutingManager).toConstantValue(new Routing
 // configure application
 const app = createApp(App);
 
+// register external components
+app.component("vue-load-image", VueLoadImage);
+
 // register components
 app.component("layout", Layout);
 
 app.component("giph-search-box", GiphSearchBox);
 app.component("giph-list", GiphList);
+app.component("giph-image", GiphImage);
 app.component("giph-pager", GiphPager);
 
 app.component("giph-title-bar", GiphTitleBar);

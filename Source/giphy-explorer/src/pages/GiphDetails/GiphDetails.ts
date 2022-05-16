@@ -12,7 +12,7 @@ export default class GiphDetails extends Vue {
     @inject() private readonly routingManager!: IRoutingManager;
     @inject() private readonly stateManager!: IStateManager;
 
-    public get giph(): BasicGiphInfo | null {
+    public get giph(): DetailedGiphInfo | null {
         return this.stateManager.state.giphs.selectedItem;
     }
 

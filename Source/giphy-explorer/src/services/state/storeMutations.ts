@@ -1,4 +1,5 @@
 import { BasicGiphInfo } from "../../common/basicGiphInfo";
+import { DetailedGiphInfo } from "../../common/detailedGiphInfo";
 import { State } from "./state";
 import { MutationTree } from "vuex";
 
@@ -23,7 +24,7 @@ export const mutations = <MutationTree<State>>{
         state.giphs.search = data.search;
         state.giphs.searchHistory = state.giphs.searchHistory.concat([data.search.toLowerCase()]).filter((value, index, self) => self.indexOf(value) === index).filter(value => value?.length > 0).sort();
     },
-    [selectGiph](state: State, giph: BasicGiphInfo | null): void {
+    [selectGiph](state: State, giph: DetailedGiphInfo | null): void {
         state.giphs.selectedItem = giph;
     }
 };

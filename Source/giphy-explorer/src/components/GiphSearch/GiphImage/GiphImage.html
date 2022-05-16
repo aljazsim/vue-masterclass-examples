@@ -1,0 +1,16 @@
+<vue-load-image>
+    <template v-slot:image>
+        <img :src="giph.url" :width="giph.width" :height="giph.height" loading="lazy" />
+    </template>
+    <template v-slot:preloader>
+        <div class="d-flex flex-fill flex-column justify-content-center align-items-center light-gray">
+            <span class="text-center text-wrap fw-bold mb-2">loading...</span>
+            <icon-loading :size="40" class="rotate-counter-clockwise" />
+        </div>
+    </template>
+    <template v-slot:error>
+        <div class="d-flex flex-fill flex-column justify-content-center align-items-center light-gray">
+            <span class="text-center text-wrap fw-bold mb-2">error loading image :(</span>
+        </div>
+    </template>
+</vue-load-image>
