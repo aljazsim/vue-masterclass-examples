@@ -6,7 +6,9 @@ import { Prop } from "vue-property-decorator";
 export default class GiphImage extends Vue
 {
     @Prop() public isLoading!: boolean;
-    @Prop() public giph!: BasicGiphInfo;
+
+    // BUG: image isn't displayed, because giph property isn't populated by parent component
+    public giph!: BasicGiphInfo;
 
     public complete = false;
 }
