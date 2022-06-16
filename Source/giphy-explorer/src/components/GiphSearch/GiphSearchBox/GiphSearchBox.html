@@ -1,14 +1,11 @@
 <div class="d-flex d-row flex-grow-1 flex-wrap justify-content-center align-items-stretch search-box p-3" :class="{ 'search-box-disabled': isLoading }">
     <div class="d-flex flex-column flex-grow-1 align-items-stretch">
-        <!-- BUG: on enter key press onSarch(model) should get invoked -->
-        <!-- BUG: on esc key press onClear() should get invoked -->
-        <input type="text" max-length="50" class="d-flex flex-grow-1 search-input" placeholder="Search Giphs" v-model="model" v-auto-focus v-auto-select :disabled="isLoading" @keydown.esc="onClear()" ref="input">
+        <input type="text" max-length="50" class="d-flex flex-grow-1 search-input" placeholder="Search Giphs" v-model="model" v-auto-focus v-auto-select :disabled="isLoading" @keydown.enter="onSearch(model)" @keydown.esc="onClear()" ref="input">
     </div>
 
     <div class="d-flex d-row flex-wrap search-box-buttons">
         <div class="btn-group">
-            <!-- BUG: on button click onSarch(model) should get invoked -->
-            <button type="button" class="btn btn-primary" :disabled="!canSearch">
+            <button type="button" class="btn btn-primary" :disabled="!canSearch" @click="onSearch(model)">
                 <icon-search class="me-2" />
                 Search
             </button>
