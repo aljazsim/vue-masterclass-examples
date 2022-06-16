@@ -2,7 +2,6 @@ export const AutoFocusDirective =
 {
     mounted: (el: HTMLInputElement): void =>
     {
-        el.focus();
-        el.select();
+        // BUG: when the directive is mounted, make sure the element gets focused and input text selected
     }
 };

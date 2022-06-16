@@ -74,7 +74,7 @@ app.component("icon-save", ContentSaveOutlineIcon);
 app.component("icon-copy", ContentCopyIcon);
 
 // register directives
-app.directive("auto-focus", AutoFocusDirective);
+// BUG: register AutoFocusDirective as 'auto-focus'
 app.directive("auto-select", AutoSelectDirective);
 
 // register plugins
