@@ -5,7 +5,8 @@
 
     <div class="d-flex d-row flex-wrap search-box-buttons">
         <div class="btn-group">
-            <button type="button" class="btn btn-primary" :disabled="!canSearch" @click="onSearch(model)">
+            <!-- BUG: on button click onSarch(model) should get invoked -->
+            <button type="button" class="btn btn-primary" :disabled="!canSearch">
                 <icon-search class="me-2" />
                 Search
             </button>

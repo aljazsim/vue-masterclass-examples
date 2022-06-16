@@ -6,7 +6,8 @@
 
     <!-- info -->
     <div class="d-flex flex-column flex-grow-1 mt-2">
-        <giph-info :isLoading="isLoading" :giph="giph" @save="onSave($event)" @copy="onCopy($event)"></giph-info>
+        <!-- BUG: on save event  onSave() should get invoked with event parameters -->
+        <giph-info :isLoading="isLoading" :giph="giph" @copy="onCopy($event)"></giph-info>
     </div>
 
     <!-- status bar -->
