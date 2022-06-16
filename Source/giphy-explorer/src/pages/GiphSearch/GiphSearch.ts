@@ -50,10 +50,8 @@ export default class GiphSearch extends Vue
         return this.stateManager.state.giphs.totalItemCount;
     }
 
-    public mounted(): void
-    {
-        window.addEventListener("keydown", this.onKeyDown);
-    }
+    // BUG: the code below should be called when the component is mounted
+    // window.addEventListener("keydown", this.onKeyDown);
 
     public onClear(): void
     {
