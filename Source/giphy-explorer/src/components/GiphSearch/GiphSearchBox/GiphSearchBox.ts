@@ -31,7 +31,8 @@ export default class GiphSearchBox extends Vue
 
     private get input(): HTMLInputElement
     {
-        return this.$refs.input as HTMLInputElement;
+        // BUG: this should return the referenced 'input' as HTMLInputElement
+        return new HTMLInputElement();
     }
 
     @Watch("cleared", { immediate: true, deep: false })

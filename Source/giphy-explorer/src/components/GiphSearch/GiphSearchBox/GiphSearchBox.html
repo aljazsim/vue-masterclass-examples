@@ -1,6 +1,7 @@
 <div class="d-flex d-row flex-grow-1 flex-wrap justify-content-center align-items-stretch search-box p-3" :class="{ 'search-box-disabled': isLoading }">
     <div class="d-flex flex-column flex-grow-1 align-items-stretch">
-        <input type="text" max-length="50" class="d-flex flex-grow-1 search-input" placeholder="Search Giphs" v-model="model" v-auto-focus v-auto-select :disabled="isLoading" @keydown.enter="onSearch(model)" @keydown.esc="onClear()" ref="input">
+        <!-- BUG: mark input to be referenced as 'input' -->
+        <input type="text" max-length="50" class="d-flex flex-grow-1 search-input" placeholder="Search Giphs" v-model="model" v-auto-focus v-auto-select :disabled="isLoading" @keydown.enter="onSearch(model)" @keydown.esc="onClear()">
     </div>
 
     <div class="d-flex d-row flex-wrap search-box-buttons">
