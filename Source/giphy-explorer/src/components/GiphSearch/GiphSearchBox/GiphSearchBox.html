@@ -1,4 +1,5 @@
-<div class="d-flex d-row flex-grow-1 flex-wrap justify-content-center align-items-stretch search-box p-3" :class="{ 'search-box-disabled': isLoading }">
+<!-- BUG: div element should get a css class 'search-box-disabled' when isLoading flag is true -->
+<div class="d-flex d-row flex-grow-1 flex-wrap justify-content-center align-items-stretch search-box p-3">
     <div class="d-flex flex-column flex-grow-1 align-items-stretch">
         <input type="text" max-length="50" class="d-flex flex-grow-1 search-input" placeholder="Search Giphs" v-model="model" v-auto-focus v-auto-select :disabled="isLoading" @keydown.enter="onSearch(model)" @keydown.esc="onClear()" ref="input">
     </div>
