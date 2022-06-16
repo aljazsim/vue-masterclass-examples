@@ -43,7 +43,7 @@ export default class GiphSearchBox extends Vue
         }
     }
 
-    @Watch("searchKeywords", { immediate: true, deep: false })
+    // BUG onSearchKeywordsChanged() is never called because the watcher on the searchKeywords property is not set
     public onSearchKeywordsChanged(newValue: string): void
     {
         this.model = newValue;
