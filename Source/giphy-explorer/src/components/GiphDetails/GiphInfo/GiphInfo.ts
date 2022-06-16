@@ -25,7 +25,7 @@ export default class GiphInfo extends Vue
 
     private emitSaveEvent(giph: DetailedGiphInfo)
     {
-        this.$emit("save", giph);
+        // BUG: the image isn't getting saved, because the save event isn't being triggered
     }
 
     private emitCopyEvent(giph: DetailedGiphInfo)
