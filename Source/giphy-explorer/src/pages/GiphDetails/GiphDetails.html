@@ -1,7 +1,8 @@
 <layout>
     <!-- title bar -->
     <div class="d-flex">
-        <giph-title-bar :isLoading="isLoading" :title="giph?.title" :userAvatarUrl="giph?.userAvatarUrl" @goBack="goToGiphSearch()"></giph-title-bar>
+        <!-- BUG: giph title isn't displaying -->
+        <giph-title-bar :isLoading="isLoading" :userAvatarUrl="giph?.userAvatarUrl" @goBack="goToGiphSearch()"></giph-title-bar>
     </div>
 
     <!-- info -->

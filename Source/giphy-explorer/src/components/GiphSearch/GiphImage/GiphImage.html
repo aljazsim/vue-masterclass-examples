@@ -1,6 +1,7 @@
 <vue-load-image>
     <template v-slot:image>
-        <img :id="giph.id" :src="giph.url" :width="giph.width" :height="giph.height" loading="lazy" />
+        <!-- BUG: image is not displayed -->
+        <img :id="giph.id" :width="giph.width" :height="giph.height" loading="lazy" />
     </template>
     <template v-slot:preloader>
         <div class="d-flex flex-fill flex-column justify-content-center align-items-center light-gray p-2">
