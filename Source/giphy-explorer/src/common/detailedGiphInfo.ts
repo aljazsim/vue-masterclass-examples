@@ -1,6 +1,7 @@
 import { BasicGiphInfo } from "./basicGiphInfo";
 
-export class DetailedGiphInfo extends BasicGiphInfo {
+export class DetailedGiphInfo extends BasicGiphInfo
+{
     constructor(
         id: string,
         title: string,
@@ -16,7 +17,8 @@ export class DetailedGiphInfo extends BasicGiphInfo {
         public readonly userAvatarUrl: string,
         public readonly created: string,
         public readonly source: string,
-        public readonly embedUrl: string) {
+        public readonly embedUrl: string)
+    {
         super(id, title, width, height, url);
     }
 }

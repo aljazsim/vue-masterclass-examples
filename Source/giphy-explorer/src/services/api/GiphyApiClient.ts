@@ -8,15 +8,18 @@ import axios, { AxiosInstance, AxiosRequestConfig } from "axios";
 import { decamelizeKeys } from "humps";
 import qs from "qs";
 
-export class GiphyApiClient implements IGiphyApiClient {
+export class GiphyApiClient implements IGiphyApiClient
+{
     private readonly http: AxiosInstance;
 
-    constructor(baseUrl: string, private readonly apiKey: string) {
+    constructor(baseUrl: string, private readonly apiKey: string)
+    {
         this.http = axios.create({ baseURL: baseUrl });
         this.http.interceptors.request.use(this.convertRequestToSnakeCase);
     }
 
-    public async downloadFile(url: string, fileName: string): Promise<void> {
+    public async downloadFile(url: string, fileName: string): Promise<void>
+    {
         const response = await axios.get(url, { responseType: "arraybuffer" });
         const href = window.URL.createObjectURL(new Blob([response.data]));
         const link = document.createElement("a");
@@ -31,16 +34,19 @@ export class GiphyApiClient implements IGiphyApiClient {
         document.body.removeChild(link);
     }
 
-    public async getBlob(url: string): Promise<Blob> {
+    public async getBlob(url: string): Promise<Blob>
+    {
         return (await axios.get(url, { responseType: "blob" })).data as Blob;
     }
 
-    public async getGiphDetails(giphId: string): Promise<DetailedGiphInfo> {
+    public async getGiphDetails(giphId: string): Promise<DetailedGiphInfo>
+    {
         const configuration = this.getHttpConfiguration(this.apiKey);
 
         configuration.params.gif_id = giphId;
 
-        try {
+        try
+        {
             const response = await this.http.get<GetGiphResponse>(`gifs/${giphId}`, configuration);
             const giph = response.data.data;
             const width = giph.images.original.width;
@@ -59,19 +65,23 @@ export class GiphyApiClient implements IGiphyApiClient {
             const embedUrl = giph.embed_url;
 
             return new DetailedGiphInfo(giphId, title, width, height, url, size, type, username, userDisplayName, userDescription, userProfileUrl, userAvatarUrl, created, source, embedUrl);
-        } catch (error) {
+        }
+        catch (error)
+        {
             this.handleHttpError(error);
         }
     }
 
-    public async searchGiphs(searchKeywords: string, page: number, pageSize: number): Promise<PagedList<BasicGiphInfo>> {
+    public async searchGiphs(searchKeywords: string, page: number, pageSize: number): Promise<PagedList<BasicGiphInfo>>
+    {
         const configuration = this.getHttpConfiguration(this.apiKey);
 
         configuration.params.q = searchKeywords;
         configuration.params.limit = pageSize;
         configuration.params.offset = pageSize == null ? 0 : (page - 1) * pageSize;
 
-        try {
+        try
+        {
             const response = await this.http.get<SearchGiphsResponse>("gifs/search", configuration);
             const data = response.data;
             const totalItemCount = data.pagination.total_count;
@@ -79,22 +89,30 @@ export class GiphyApiClient implements IGiphyApiClient {
             const giphs = data.data.map(d => new BasicGiphInfo(d.id, d.title, d.images.fixed_height.width, d.images.fixed_height.height, d.images.fixed_height.url));
 
             return new PagedList<BasicGiphInfo>(totalItemCount, giphs, page, pageSize, pageCount);
-        } catch (error) {
+        }
+        catch (error)
+        {
             this.handleHttpError(error);
         }
     }
 
-    private convertRequestToSnakeCase(config: AxiosRequestConfig<any>): AxiosRequestConfig<any> | Promise<AxiosRequestConfig<any>> {
-        if (config.headers["Content-Type"] === "multipart/form-data") {
+    private convertRequestToSnakeCase(config: AxiosRequestConfig<any>): AxiosRequestConfig<any> | Promise<AxiosRequestConfig<any>>
+    {
+        if (config.headers["Content-Type"] === "multipart/form-data")
+        {
             return config;
-        } else {
+        }
+        else
+        {
             const newConfig = { ...config };
 
-            if (config.params) {
+            if (config.params)
+            {
                 newConfig.params = decamelizeKeys(config.params);
             }
 
-            if (config.data) {
+            if (config.data)
+            {
                 newConfig.data = decamelizeKeys(config.data);
             }
 
@@ -102,7 +120,8 @@ export class GiphyApiClient implements IGiphyApiClient {
         }
     }
 
-    private getHttpConfiguration(apiKey: string): AxiosRequestConfig {
+    private getHttpConfiguration(apiKey: string): AxiosRequestConfig
+    {
         const configuration = {
             params: { api_key: apiKey },
             paramsSerializer: (params: any) => qs.stringify(params, { skipNulls: true })
@@ -111,14 +130,20 @@ export class GiphyApiClient implements IGiphyApiClient {
         return configuration;
     }
 
-    private handleHttpError(error: any) {
+    private handleHttpError(error: any)
+    {
         let errorMessage;
 
-        if (error?.response?.data) {
+        if (error?.response?.data)
+        {
             errorMessage = `Error response: ${error.response.data.status} ${error.response.data.title}.`;
-        } else if (error?.response) {
+        }
+        else if (error?.response)
+        {
             errorMessage = `Error response: ${JSON.stringify(error.response)}`;
-        } else {
+        }
+        else
+        {
             errorMessage = `Error: ${JSON.stringify(error)}`;
         }
 
