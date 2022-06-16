@@ -1,5 +1,6 @@
 export const AutoSelectDirective = {
-    mounted: (el: HTMLInputElement): void => {
+    mounted: (el: HTMLInputElement): void =>
+    {
         el.onfocus = () => el.select();
     }
 };
