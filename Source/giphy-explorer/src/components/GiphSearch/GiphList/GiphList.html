@@ -4,7 +4,8 @@
 
         <!-- giph images -->
         <div class="d-flex flex-row flex-wrap justify-content-evenly giph-image-container">
-            <div v-for="giph in giphs" :key="giph.id" :style="{ width: giph.width + 'px', height: giph.height + 'px' }" class="d-flex giph-image hand fadein-animation grow-on-hover" @click="select(giph)">
+            <!-- BUG: list of giph isn't being displayed (use the giph id for key) -->
+            <div :style="{ width: giph.width + 'px', height: giph.height + 'px' }" class="d-flex giph-image hand fadein-animation grow-on-hover" @click="select(giph)">
                 <giph-image :giph="giph" class="d-flex flex-grow-1"></giph-image>
             </div>
         </div>
