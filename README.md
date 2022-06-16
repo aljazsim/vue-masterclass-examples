@@ -1,3 +1,9 @@
+# Vue.js masterclass
+
+![vue.js masterclass](cover.png "Vue.js masterclass")
+
+This repository contains the Vue.js masterclass presentation and practical examples.
+
 # Giphy Explorer
 
 Giphy Explorer is a [Vue.js](https://vuejs.org/) application showcasing basic elements of the framework. It allows the users to explore giphs offered by the [giphy.com](https://giphy.com/)

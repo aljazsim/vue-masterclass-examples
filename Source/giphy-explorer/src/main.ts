@@ -27,15 +27,15 @@ import { StateManager } from "./services/state/stateManager";
 import { store } from "./services/state/store";
 import { cid, container } from "inversify-props";
 import { createApp } from "vue";
+import VueLoadImage from "vue-load-image";
 import ChevronTrippleLeftIcon from "vue-material-design-icons/ChevronTripleLeft.vue";
 import CloseIcon from "vue-material-design-icons/Close.vue";
-import ContentSaveOutlineIcon from "vue-material-design-icons/ContentSaveOutline.vue";
 import ContentCopyIcon from "vue-material-design-icons/ContentCopy.vue";
+import ContentSaveOutlineIcon from "vue-material-design-icons/ContentSaveOutline.vue";
 import DownloadIcon from "vue-material-design-icons/Download.vue";
 import ImageSearchOutlineIcon from "vue-material-design-icons/ImageSearchOutline.vue";
 import MagnifyIcon from "vue-material-design-icons/Magnify.vue";
 import SyncIcon from "vue-material-design-icons/Sync.vue";
-import VueLoadImage from "vue-load-image";
 
 // configuration
 const configuration: Configuration = getConfiguration();
