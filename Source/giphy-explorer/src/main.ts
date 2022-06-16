@@ -54,7 +54,7 @@ app.component("vue-load-image", VueLoadImage);
 // register components
 app.component("layout", Layout);
 
-app.component("giph-search-box", GiphSearchBox);
+// BUG: GiphSearchBox component needs to be registered (set the tag to 'giph-search-box')
 app.component("giph-list", GiphList);
 app.component("giph-image", GiphImage);
 app.component("giph-pager", GiphPager);
