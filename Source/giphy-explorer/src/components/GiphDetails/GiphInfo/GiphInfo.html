@@ -41,7 +41,9 @@
             </tr>
             <tr v-if="giph?.size">
                 <td>Size:</td>
-                <td>{{ formatBytes(giph?.size) }}</td>
+                <td>
+                    <!-- BUG: image size isn't displayed (make sure it's formatted in bytes) -->
+                </td>
             </tr>
             <tr v-if="giph?.created">
                 <td>Created:</td>

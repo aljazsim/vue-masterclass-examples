@@ -1,5 +1,7 @@
 <div class="d-flex flex-fill justify-content-between align-items-center pager p-3" :class="{ 'pager-disabled': isLoading }">
-    <span class="text-center" v-if="itemCount && totalItemCount">Displaying {{ itemCount }} of {{ totalItemCount }} giphs</span>
+    <span class="text-center" v-if="itemCount && totalItemCount">Displaying {{ itemCount }} of
+        <!-- BUG: total number of images is not displayed --> giphs
+    </span>
     <span v-else>&nbsp;</span>
 
     <div class="d-flex flex-row flex-wrap justify-content-center mx-4">
