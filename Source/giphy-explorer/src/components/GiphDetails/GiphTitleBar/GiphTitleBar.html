@@ -3,6 +3,6 @@
 
     <span class="text-center fw-bold mx-4">{{ title }}</span>
 
-    <img v-if="userAvatarUrl" :src="userAvatarUrl" height="30" />
-    <span v-else>&nbsp;</span>
+    <!-- BUG: image should be visible only if the user avatar exists -->
+    <img :src="userAvatarUrl" height="30" />
 </div>

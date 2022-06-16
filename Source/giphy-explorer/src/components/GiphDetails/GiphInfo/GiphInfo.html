@@ -11,7 +11,8 @@
                     </div>
                 </td>
             </tr>
-            <tr v-if="giph?.url">
+            <!-- BUG: table row should only be visible if giph has an image url -->
+            <tr>
                 <td class="text-center" colspan="2">
                     <button class="btn btn-primary text-bright text-capitalize px-4" :disabled="isLoading" type="button" @click="onSave()">
                         <icon-save class="me-2" />
