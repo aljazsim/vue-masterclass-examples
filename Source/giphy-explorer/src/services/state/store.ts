@@ -22,6 +22,7 @@ export const store: Store<State> = createStore<State>({
 
 export const key: InjectionKey<Store<State>> = Symbol("store");
 
-export function useStore(): Store<State> {
+export function useStore(): Store<State>
+{
     return baseUseStore(key);
 }

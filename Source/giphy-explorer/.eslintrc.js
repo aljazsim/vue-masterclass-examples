@@ -23,7 +23,8 @@ module.exports = {
         "@typescript-eslint/no-explicit-any": "off",
         "vue/multi-word-component-names": "off",
         "indent": ["error", 4],
-        "@typescript-eslint/no-empty-function": "off"
+        "@typescript-eslint/no-empty-function": "off",
+        "brace-style": ["error", "allman"]
     },
     overrides: [
         {
